@@ -15,10 +15,10 @@ import { createAuthSchema } from '../schemas/authSchema';
 import { useAuthStore } from '../store/useAuthStore';
 
 interface AuthFormData {
-  name: string;
+  name?: string;
   email: string;
   password: string;
-  confirmPassword: string;
+  confirmPassword?: string;
 }
 function AuthPage() {
   const { isLogin, setIsLogin, showPassword, setShowPassword } = useAuthStore();
