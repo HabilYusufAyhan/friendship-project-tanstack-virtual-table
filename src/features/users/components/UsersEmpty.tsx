@@ -1,12 +1,20 @@
 // components/users/UsersEmpty.tsx
 import { Users } from 'lucide-react';
 
-export const UsersEmpty = () => (
-  <tr>
-    <td colSpan={6} className="px-6 py-12 text-center text-gray-500">
-      <Users className="w-12 h-12 mx-auto mb-3 text-gray-300" />
-      <p className="text-lg font-semibold">Kullanıcı bulunamadı</p>
-      <p className="text-sm">Arama kriterlerinizi değiştirin</p>
-    </td>
-  </tr>
+interface UsersEmptyProps {
+  isLoading: boolean;
+}
+
+export const UsersEmpty = ({ isLoading }: UsersEmptyProps) => (
+  <tbody className="w-full flex items-center justify-center">
+    <tr className="px-6 py-12 text-center text-gray-500">
+      <td>
+        <Users className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+        <p className="text-lg font-semibold">
+          {isLoading ? 'Kullanıcılar aranıyor...' : 'Kullanıcı bulunamadı'}
+        </p>
+        {!isLoading ? <p className="text-sm">Arama kriterlerinizi değiştirin</p> : ''}
+      </td>
+    </tr>
+  </tbody>
 );

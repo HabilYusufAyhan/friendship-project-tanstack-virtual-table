@@ -1,4 +1,5 @@
 // components/users/UserRow.tsx
+
 import { Briefcase, Heart, Mail, MapPin, Phone, X } from 'lucide-react';
 
 import type { UserData } from '../types/User';
@@ -7,33 +8,36 @@ interface Props {
   user: UserData;
   onMeet: (id: number, name: string) => void;
   onSkip: (id: number) => void;
+  style?: React.CSSProperties;
 }
 
-export const UserRow = ({ user, onMeet, onSkip }: Props) => (
-  <tr className="hover:bg-purple-50 transition">
-    {/* User */}
-    <td className="px-6 py-4">
-      <div className="flex items-center gap-4">
+export const UserRow = ({ user, onMeet, onSkip, style }: Props) => (
+  <tr
+    style={style}
+    className="hover:bg-purple-50 transition flex items-center box-border relative py-2 "
+  >
+    <td className="px-6 text-left min-w-1/6 truncate">
+      <div className="flex items-center flex-row gap-2">
         <img
           src={user.image}
           alt={`${user.firstName} ${user.lastName}`}
           className="w-16 h-16 rounded-full object-cover ring-2 ring-purple-200"
         />
         <div>
-          <h3 className="font-semibold text-gray-900 text-lg">
+          <h3 className="font-semibold text-gray-900 text-lg whitespace-nowrap">
             {user.firstName} {user.lastName}
           </h3>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-gray-500 whitespace-nowrap">
             {user.age} yaşında • {user.gender === 'female' ? 'Kadın' : 'Erkek'}
           </p>
-          <p className="text-xs text-purple-600">{user.bloodGroup}</p>
+          {/* <p className="text-xs text-purple-600">{user.bloodGroup}</p> */}
         </div>
       </div>
     </td>
 
     {/* Contact */}
-    <td className="px-6 py-4">
-      <div className="space-y-2">
+    <td className="px-6  text-left min-w-1/6 truncate">
+      <div>
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <Mail className="w-4 h-4 text-purple-500" />
           <span className="truncate max-w-52">{user.email}</span>
@@ -46,7 +50,7 @@ export const UserRow = ({ user, onMeet, onSkip }: Props) => (
     </td>
 
     {/* Location */}
-    <td className="px-6 py-4">
+    <td className="px-6  text-left min-w-1/6 truncate">
       <div className="flex items-start gap-2 text-sm text-gray-600">
         <MapPin className="w-4 h-4 text-purple-500 mt-0.5" />
         <div>
@@ -59,7 +63,7 @@ export const UserRow = ({ user, onMeet, onSkip }: Props) => (
     </td>
 
     {/* Job */}
-    <td className="px-6 py-4">
+    <td className="px-6  text-left min-w-1/6 truncate">
       <div className="flex items-start gap-2 text-sm text-gray-600">
         <Briefcase className="w-4 h-4 text-purple-500 mt-0.5" />
         <div>
@@ -71,8 +75,8 @@ export const UserRow = ({ user, onMeet, onSkip }: Props) => (
     </td>
 
     {/* Physical */}
-    <td className="px-6 py-4">
-      <div className="space-y-1 text-sm text-gray-600">
+    <td className="px-6  text-left min-w-1/6 truncate">
+      <div className="text-sm text-gray-600">
         <p>
           <b>Boy:</b> {user.height.toFixed(0)} cm
         </p>
@@ -89,7 +93,7 @@ export const UserRow = ({ user, onMeet, onSkip }: Props) => (
     </td>
 
     {/* Actions */}
-    <td className="px-6 py-4">
+    <td className="px-6  text-left min-w-1/6 truncate">
       <div className="flex items-center justify-center gap-3">
         <button
           onClick={() => onMeet(user.id, `${user.firstName} ${user.lastName}`)}
