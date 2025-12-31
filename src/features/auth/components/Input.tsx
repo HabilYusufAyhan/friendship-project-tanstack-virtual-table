@@ -17,14 +17,16 @@ interface InputProps {
 const Input = ({ label, type, placeholder, icon, button, error, ...props }: InputProps) => {
   return (
     <div>
-      <label className="block text-sm font-semibold text-gray-700 mb-2">{label}</label>
-      <div className="relative">
+      <div className="flex items-center gap-2 mb-2">
         {icon}
+        <label className="block text-sm font-semibold text-gray-700 ">{label}</label>
+      </div>
+      <div className="relative">
         <input
           type={type}
           {...props}
           placeholder={placeholder}
-          className={`w-full pl-12 pr-12 py-3 border-2 rounded-xl focus:outline-none transition ${
+          className={`w-full pl-5 pr-12 py-3 border-2 rounded-xl focus:outline-none transition ${
             error ? 'border-red-500' : 'border-gray-200 focus:border-purple-500'
           }`}
         />

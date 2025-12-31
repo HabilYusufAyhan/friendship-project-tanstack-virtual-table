@@ -1,15 +1,13 @@
-const TabButtons = ({
-  isLogin,
-  setIsLogin
-}: {
-  isLogin: boolean;
-  setIsLogin: (val: boolean) => void;
-}) => {
+import { useNavigate } from 'react-router-dom';
+
+const TabButtons = ({ isLogin }: { isLogin: boolean }) => {
+  const navigation = useNavigate();
+
   return (
     <div className="flex gap-4 mb-8">
       <button
         type="button"
-        onClick={() => setIsLogin(true)}
+        onClick={() => navigation('/login')}
         className={`cursor-pointer flex-1 py-3 rounded-xl font-semibold transition ${
           isLogin
             ? 'bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-lg'
@@ -20,7 +18,7 @@ const TabButtons = ({
       </button>
       <button
         type="button"
-        onClick={() => setIsLogin(false)}
+        onClick={() => navigation('/signup')}
         className={`cursor-pointer flex-1 py-3 rounded-xl font-semibold transition ${
           !isLogin
             ? 'bg-linear-to-r from-purple-600 to-pink-600 text-white shadow-lg'
